@@ -1,7 +1,8 @@
-import os
 import base64
-from flask import Flask, request, jsonify, render_template
+import os
 from wsgiref.simple_server import make_server
+
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 port = int(os.environ.get('SERVER_PORT', 8080))
