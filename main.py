@@ -14,20 +14,15 @@ def analyze_string():
         return jsonify({'error': 'Missing string parameter'}), 400
 
     output_json = []
+    char_json = []
 
-    output_json.append({
-        'string': input_string,
-        'length': input_string.__len__(),
-        'base64': base64.b64encode(input_string.encode("ascii")).decode("ascii"),
-        'hex': "".join(hex(ord(c))[2:].zfill(2) for c in input_string)
-    })
     for index, char in enumerate(input_string):
         byte = char.encode('utf-8')
         hex_str = byte.hex()
         bin_str = format(int(hex_str, 16), 'b')
         int_str = str(ord(char))
 
-        output_json.append({index: {
+        char_json.append({index: {
             'char': char,
             'hex': hex_str,
             'bin': int(bin_str),
@@ -35,6 +30,13 @@ def analyze_string():
         }
         })
 
+    output_json.append({
+        'string': input_string,
+        'length': input_string.__len__(),
+        'base64': base64.b64encode(input_string.encode("ascii")).decode("ascii"),
+        'hex': "".join(hex(ord(c))[2:].zfill(2) for c in input_string),
+        'array': char_json
+    })
     return jsonify(output_json)
 
 
