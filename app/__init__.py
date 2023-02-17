@@ -16,6 +16,10 @@ def create_app():
     from . import homepage
     myapp.register_blueprint(homepage.bp)
 
+    from . import file
+    myapp.register_blueprint(file.bp)
+
+
     return myapp
 
 

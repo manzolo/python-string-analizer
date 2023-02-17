@@ -1,13 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>String analyzer</h1>
-<form>
-  <div class="mb-3">
-    <textarea id="input-string" name="input-string" class="form-control"></textarea>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingString">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseString" aria-expanded="false" aria-controls="collapseString">
+        #String analyzer
+      </button>
+    </h2>
+    <div id="collapseString" class="accordion-collapse collapse show" aria-labelledby="headingString" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form>
+          <div class="mb-3">
+            <textarea id="input-string" name="input-string" class="form-control"></textarea>
+          </div>
+          <button id="btnString" type="submit" class="invisible btn btn-outline-secondary btn-lg">Analyze</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <button type="submit" class="invisible btn btn-outline-secondary btn-lg">Analyze</button>
-</form>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFile">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFile" aria-expanded="false" aria-controls="collapseFile">
+        #File analyzer
+      </button>
+    </h2>
+    <div id="collapseFile" class="accordion-collapse collapse" aria-labelledby="headingFile" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form action="{{ url_for('file.upload_file') }}" method="POST" enctype="multipart/form-data">
+          <input class="form-control form-control-lg" id="file" name="file" type="file">
+          <button id="btnUpload" type="submit" class="btn btn-outline-secondary btn-lg">Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <pre id="output-box"><code id="output" class="language-javascript"></code></pre>
 
