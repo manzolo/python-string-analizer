@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>String analyzer</h1>
+<form>
+  <div class="mb-3">
+    <textarea id="input-string" name="input-string" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="invisible btn btn-outline-secondary btn-lg">Analyze</button>
+</form>
+
+<pre id="output-box"><code id="output" class="language-javascript"></code></pre>
+
+{% endblock %}
