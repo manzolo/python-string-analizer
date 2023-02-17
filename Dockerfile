@@ -4,16 +4,15 @@ FROM python:3.9-slim-buster
 WORKDIR /app
 
 # Copia il file requirements.txt contenente le dipendenze dell'applicazione
-COPY requirements.txt .
-
-# Installa le dipendenze dell'applicazione
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copia il codice dell'applicazione nella directory di lavoro del container
 COPY . .
 
-# Imposta la variabile d'ambiente FLASK_APP per l'applicazione Flask
-ENV FLASK_APP=main.py
-ENV SERVER_PORT=8080
+# Installa le dipendenze dell'applicazione
+RUN pip install -e .
+
+ENV APP_ENV=prod
+ENV SERVER_PORT=8000
+
 # Esegui l'applicazione quando il container è avviato
-CMD ["python", "main.py"]
+CMD ["flask", "run"]
+
+
